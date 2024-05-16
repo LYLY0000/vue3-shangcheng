@@ -15,8 +15,5 @@ import HomePanel from './components/HomePanel.vue'
   <HomeNew />
   <HomeHot />
   <HomeProduct />
-<HomePanel title="新鲜好物" subTitle="xinxianhaowu">
-  <div>我是新鲜好物的插槽</div>
-</HomePanel>
-<HomePanel title="人气推荐" subTitle="renqituijian"></HomePanel>
+
 </template>
