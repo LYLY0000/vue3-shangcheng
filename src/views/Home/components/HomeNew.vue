@@ -6,9 +6,9 @@ import { onMounted, ref } from 'vue'
 const newList = ref([])
 const getNewList = async () => {
   const res = await getNewAPI()
-  console.log(res);
+ // console.log(res);
   newList.value = res.result
-  console.log(newList.value);
+  //console.log(newList.value);
 }
 
 onMounted(() => getNewList())
@@ -22,7 +22,7 @@ onMounted(() => getNewList())
          
         <li v-for="item in newList" :key="item.id">
           <RouterLink :to="`/detail/${item.id}`">
-            <img :src="item.picture" alt="" />
+            <img v-img-lazy="item.picture" alt="" />
             <p class="name">{{ item.name }}</p>
             <p class="price">&yen;{{ item.price }}</p>
           </RouterLink>
