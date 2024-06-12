@@ -3,6 +3,7 @@ import { getDetailAPI } from "@/api/detail.js";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import imageView from "@/components/ImageView/index.vue";
+import XtxSku from "@/components/XtxSku/index.vue";
 import DetailHot from "./components/DetailHot.vue";
 const goods = ref({});
 const route = useRoute();
@@ -11,6 +12,10 @@ const getGoods = async () => {
   goods.value = res.result;
 };
 onMounted(() => getGoods());
+//sku规格背操作时
+const skuChange = (sku) => {
+  console.log(sku);
+};
 </script>
 
 <template>
@@ -91,7 +96,7 @@ onMounted(() => getGoods());
                 </dl>
               </div>
               <!-- sku组件 -->
-
+              <XtxSku :goods="goods" @change="skuChange"></XtxSku>
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
