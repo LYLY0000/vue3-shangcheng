@@ -16,9 +16,10 @@ httpInstance.interceptors.request.use(config => {
   const userStore = useUserStore()
   const token = userStore.userInfo.token
   if (token) {
+    //2.按照后端的要求拼接token数据
     config.headers.Authorization = `Bearer ${token}`
   }
-  //2.按照后端的要求拼接token数据
+
   return config
 }, e => Promise.reject(e))
 
