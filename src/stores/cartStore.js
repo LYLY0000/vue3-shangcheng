@@ -6,13 +6,14 @@ import { insertCartAPI, findNewCartListAPI, delCartAPI } from '@/api/cart'
 export const useCartStore = defineStore('cart', () => {
   const userStore = useUserStore()
   const isLogin = computed(() => userStore.userInfo.token)
+
+  //1.定义state-cartList
+  const cartList = ref([])
   //获取最新购物车列表action
   const updataNewList = async () => {
     const res = await findNewCartListAPI()
     cartList.value = res.result
   }
-  //1.定义state-cartList
-  const cartList = ref([])
   //2.定义action-addCart
   const addCart = async (goods) => {
     const { skuId, count } = goods
@@ -58,7 +59,10 @@ export const useCartStore = defineStore('cart', () => {
 
 
   }
-
+  //清楚购物车
+  const clearCart = () => {
+    cartList.value = []
+  }
   //单选功能
   const singleCheck = (skuId, selected) => {
     //通过skuId找到要修改的那一项，然后把它的selected改为传过来的selected
@@ -92,6 +96,7 @@ export const useCartStore = defineStore('cart', () => {
     allPrice,
     singleCheck,
     isAll,
+    clearCart,
     allCheck,
     selectedCount,
     selectedPrice
